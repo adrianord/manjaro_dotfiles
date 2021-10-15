@@ -14,9 +14,9 @@ if ! [ -x "$(command -v ansible)" ]; then
   sudo apt install ansible
 fi
 
-#if [ ! -d "${WORK_DIR}/playbook" ]; then
-#  git clone https://github.com/adrianord/dotfiles.git "${WORK_DIR}/playbook"
-#fi
+if [ ! -d "${WORK_DIR}/playbook" ]; then
+  git clone https://github.com/adrianord/manjaro_dotfiles.git "${WORK_DIR}/playbook"
+fi
 
 if [[ -f "${WORK_DIR}/config.yml" ]]; then
   CONFIG="${WORK_DIR}/config.yml"
