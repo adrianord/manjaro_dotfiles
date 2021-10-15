@@ -3,7 +3,21 @@ set -e
 
 WORK_DIR="${XDG_DATA_HOME:-${HOME}/.config/dotfiles}"
 
-tags="$1"
+while [[ $# -gt 0 ]]; do
+  key="${1}"
+  case "${key}" in
+    -p|--pull)
+      pull="true"
+      shift
+      ;;
+    *)
+      tags="${1}"
+      shift
+      ;;
+  esac
+done
+
+
 
 if [ -z $tags ]; then
   tags="all"
@@ -19,6 +33,12 @@ fi
 
 if [[ -f "${WORK_DIR}/config.yml" ]]; then
   CONFIG="${WORK_DIR}/config.yml"
+fi
+
+if [ $pull ]; then
+  set -x
+  git -C "${WORK_DIR}/playbook" pull
+  set +x
 fi
 
 set -x
