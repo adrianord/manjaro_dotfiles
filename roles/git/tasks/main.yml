@@ -1,0 +1,28 @@
+- name: "Git | Ensure XDG_CONFIG directory"
+  ansible.builtin.file:
+    path: "{{ xdg_config_home }}/git"
+    state: "directory"
+
+- name: "Git | Ensure gitconfig is up to date"
+  ansible.builtin.template:
+    src: "gitconfig.j2"
+    dest: "{{ xdg_config_home}}/git/config"
+
+- name: "Ensure work gitconfig is up to date"
+  ansible.builtin.template:
+    src: "workgitconfig.j2"
+    dest: "{{ xdg_config_home }}/git/{{ item.name }}.config"
+  loop: "{{ work_companies }}"
+  when: "work_companies is defined"
+
+- name: "Ensure public code dir"
+  ansible.builtin.file:
+    path: "{{ user_home }}/Code/public"
+    state: "directory"
+
+- name: "Ensure work code dir"
+  ansible.builtin.file:
+    path: "{{ user_home }}/Code/work/{{ item.name }}"
+    state: "directory"
+  loop: "{{ work_companies }}"
+  when: "work_companies is defined"

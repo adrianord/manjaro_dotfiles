@@ -1,0 +1,13 @@
+- name: "AUR | Docker | Set up systemd service"
+  ansible.builtin.systemd:
+    name: "docker"
+    state: "started"
+    enabled: true
+  become: true
+
+- name: "AUR | Docker | Add user ({{ username }}) to group"
+  ansible.builtin.user:
+    name: "{{ username }}"
+    groups: "docker"
+    append: true
+  become: true

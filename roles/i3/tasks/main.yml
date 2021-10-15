@@ -1,0 +1,16 @@
+- name: "i3 | Ensure config path"
+  ansible.builtin.file:
+    path: "{{ xdg_config_home }}/i3"
+    state: directory
+
+- name: "i3 | Remove non-xdg config path"
+  ansible.builtin.file:
+    path: "{{ user_home }}/i3"
+    state: absent
+
+- name: "i3 | Symlink config file"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config"
+    dest: "{{ xdg_config_home }}/i3/config"
+    state: link
+    force: true

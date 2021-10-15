@@ -1,0 +1,32 @@
+- include: "setup.yml"
+  tags:
+    - "setup"
+
+- name: "AUR | Install AUR packages"
+  kewlfft.aur.aur:
+    use: "yay"
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+      - "visual-studio-code-bin"
+      - "docker"
+      - "slack-desktop"
+      - "neovim"
+      - "git-delta"
+      - "ripgrep"
+      - "fzf"
+      - "fd"
+  become_user: "aur_builder"
+  become: true
+
+- name: "AUR | Upgrade all packages"
+  kewlfft.aur.aur:
+    upgrade: true
+    use: "yay"
+  become: true
+  become_user: "aur_builder"
+  tags:
+    - "never"
+    - "upgrade"
+
+- include: "docker.yml"

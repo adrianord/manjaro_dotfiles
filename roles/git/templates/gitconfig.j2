@@ -1,0 +1,53 @@
+[core]
+    editor = nvim
+[user]
+    name = {{ full_name }}
+    email = {{ git_email }}
+{% for i in work_companies|d([]) %}
+[includeIf "gitdir:{{ user_home }}/Code/work/{{ i.name }}/"]
+    path = ~/.config/git/{{ i.name }}.config
+{% endfor %}
+[alias]
+    a = add
+    b = branch
+    c = commit
+    d = diff
+    l = log
+    m = merge
+    r = rebase
+    s = status
+    co = checkout
+    dt = difftool
+    ps = push
+    pl = pull
+    lol = log --oneline
+    amend = commit --no-edit --amend
+    gconf = config --global
+    cl = clone
+    fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+    snapshot = "!f() { if [ '"$1"' ]; then git stash save -u \""$1"\"; else git stash -u; fi; git stash apply; }; f"
+[pull]
+    rebase = true
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+    syntax-theme = Monokai Extended
+    navigate = true
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+

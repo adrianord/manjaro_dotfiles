@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+set -e
+
+WORK_DIR="${XDG_DATA_HOME:-${HOME}/.config/dotfiles}"
+
+tags="$1"
+
+if [ -z $tags ]; then
+  tags="all"
+fi
+
+if ! [ -x "$(command -v ansible)" ]; then
+  sudo apt update
+  sudo apt install ansible
+fi
+
+#if [ ! -d "${WORK_DIR}/playbook" ]; then
+#  git clone https://github.com/adrianord/dotfiles.git "${WORK_DIR}/playbook"
+#fi
+
+if [[ -f "${WORK_DIR}/config.yml" ]]; then
+  CONFIG="${WORK_DIR}/config.yml"
+fi
+
+set -x
+ansible-playbook -i "${WORK_DIR}/playbook/inventory.yml" "${WORK_DIR}/playbook/dotfiles.yml" -KD -t $tags ${CONFIG:+-e @$CONFIG}
+set +x

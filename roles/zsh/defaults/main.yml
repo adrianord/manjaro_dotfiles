@@ -1,0 +1,13 @@
+plugins:
+  - name: zsh-autosuggestions
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    zsh_file: zsh-autosuggestions/zsh-autosuggestions.zsh
+    enabled: true
+  - name: fzf-tab
+    repo: https://github.com/Aloxaf/fzf-tab
+    zsh_file: fzf-tab/fzf-tab.plugin.zsh
+    enabled: true
+  - name: zsh-syntax-highlighting
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    zsh_file: zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    enabled: true

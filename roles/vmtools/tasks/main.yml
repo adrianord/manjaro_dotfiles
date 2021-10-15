@@ -1,0 +1,9 @@
+- name: "vmtools | Enable services"
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: "started"
+    enabled: true
+  with_items:
+    - "vmware-vmblock-fuse"
+    - "vmtoolsd"
+  become: true

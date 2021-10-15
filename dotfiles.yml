@@ -1,0 +1,13 @@
+- name: "Set up development virtual machine"
+  hosts: "all"
+  roles:
+    - role: "aur"
+      tags: ["aur"]
+    - role: "i3"
+      tags: ["i3"]
+    - role: "vmtools"
+      tags: ["vmtools"]
+    - role: "git"
+      tags: ["git"]
+    - role: "zsh"
+      tags: ["zsh"]

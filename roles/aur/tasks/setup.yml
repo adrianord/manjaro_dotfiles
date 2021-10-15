@@ -1,0 +1,24 @@
+---
+- name: "AUR | Create `aur_build` user"
+  ansible.builtin.user:
+    name: "aur_builder"
+    create_home: true
+    group: "wheel"
+  become: true
+
+- name: "AUR | Allow the `aur_builder` user to run `sudo pacman` without password"
+  ansible.builtin.lineinfile:
+    path: "/etc/sudoers.d/11-install-aur_builder"
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: true
+    validate: "visudo -cf %s"
+  become: true
+
+- name: "AUR | Install yay AUR package manager"
+  community.general.pacman:
+    name: "{{ item }}"
+  with_items:
+    - "git"
+    - "base-devel"
+    - "yay"
+  become: true
