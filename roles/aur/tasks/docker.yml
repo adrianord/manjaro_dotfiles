@@ -7,7 +7,7 @@
 
 - name: "AUR | Docker | Add user ({{ username }}) to group"
   ansible.builtin.user:
-    name: "{{ username }}"
+    name: "{{ ansible_user_id }}"
     groups: "docker"
     append: true
   become: true
