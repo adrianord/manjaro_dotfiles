@@ -10,8 +10,7 @@ if [ -z $tags ]; then
 fi
 
 if ! [ -x "$(command -v ansible)" ]; then
-  sudo apt update
-  sudo apt install ansible
+  sudo pacman -S ansible
 fi
 
 if [ ! -d "${WORK_DIR}/playbook" ]; then
@@ -23,5 +22,6 @@ if [[ -f "${WORK_DIR}/config.yml" ]]; then
 fi
 
 set -x
+ansible-galaxy install -r "${WORK_DIR}/playbook/requirements.yml"
 ansible-playbook -i "${WORK_DIR}/playbook/inventory.yml" "${WORK_DIR}/playbook/dotfiles.yml" -KD -t $tags ${CONFIG:+-e @$CONFIG}
 set +x
