@@ -16,6 +16,7 @@
       - "ripgrep"
       - "fzf"
       - "fd"
+      - "autorandr"
   become_user: "aur_builder"
   become: true
 
