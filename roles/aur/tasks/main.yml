@@ -19,14 +19,4 @@
   become_user: "aur_builder"
   become: true
 
-- name: "AUR | Upgrade all packages"
-  kewlfft.aur.aur:
-    upgrade: true
-    use: "yay"
-  become: true
-  become_user: "aur_builder"
-  tags:
-    - "never"
-    - "upgrade"
-
 - include: "docker.yml"
