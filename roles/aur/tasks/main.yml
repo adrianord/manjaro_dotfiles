@@ -17,6 +17,8 @@
       - "fzf"
       - "fd"
       - "autorandr"
+      - "kubectl-bin"
+      - "helm"
   become_user: "aur_builder"
   become: true
 
