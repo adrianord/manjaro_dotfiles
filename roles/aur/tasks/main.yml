@@ -19,6 +19,8 @@
       - "autorandr"
       - "kubectl-bin"
       - "helm"
+      - "obsidian"
+      - "rofi"
   become_user: "aur_builder"
   become: true
 
