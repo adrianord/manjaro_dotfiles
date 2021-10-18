@@ -10,6 +10,7 @@ Create file `${XDG_DATA_HOME:-${HOME}/.config}/dotfiles/config.yml` with user sp
 work_companies:
   - name: work
     git_email: work@work.com
+    ssh_key_location: ~/.ssh/id_rsa_work
 
 full_name: John Doe
 git_email: JohnDoe@email.com
