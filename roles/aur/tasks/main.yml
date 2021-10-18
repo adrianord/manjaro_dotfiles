@@ -2,12 +2,9 @@
   tags:
     - "setup"
 
-- name: "AUR | Install AUR packages"
-  kewlfft.aur.aur:
-    use: "yay"
-    state: "latest"
-    name: "{{ item }}"
-  with_items:
+- name: "AUR | Default AUR packages"
+  set_fact:
+    default_aur_packages:
       - "visual-studio-code-bin"
       - "docker"
       - "slack-desktop"
@@ -17,10 +14,16 @@
       - "fzf"
       - "fd"
       - "autorandr"
-      - "kubectl-bin"
-      - "helm"
       - "obsidian"
       - "rofi"
+
+- name: "AUR | Install AUR packages"
+  kewlfft.aur.aur:
+    use: "yay"
+    state: "latest"
+    name: "{{ item }}"
+  with_items: "{{ default_aur_packages + additional_aur_packages }}"
+
   become_user: "aur_builder"
   become: true
 
