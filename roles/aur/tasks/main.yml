@@ -16,6 +16,7 @@
       - "autorandr"
       - "obsidian"
       - "rofi"
+      - "bitwarden"
 
 - name: "AUR | Install AUR packages"
   kewlfft.aur.aur:
