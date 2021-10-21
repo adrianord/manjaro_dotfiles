@@ -17,6 +17,7 @@
       - "obsidian"
       - "rofi"
       - "bitwarden"
+      - "nvm"
 
 - name: "AUR | Install AUR packages"
   kewlfft.aur.aur:
