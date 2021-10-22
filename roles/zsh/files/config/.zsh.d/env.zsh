@@ -36,6 +36,6 @@ if type helm > /dev/null; then
   source <(helm completion zsh)
 fi
 
-if [[ /usr/share/nvm/init-nvm.sh ]]
+if [[ /usr/share/nvm/init-nvm.sh ]]; then
   source /usr/share/nvm/init-nvm.sh
 fi
