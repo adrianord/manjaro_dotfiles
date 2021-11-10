@@ -1,0 +1,6 @@
+---
+- name: "Symlink neovim configuration"
+  file:
+    src: "{{ role_path }}/files"
+    dest: "{{ xdg_config_home }}/nvim"
+    state: "link"
