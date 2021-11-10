@@ -18,6 +18,8 @@
       - "rofi"
       - "bitwarden"
       - "nvm"
+      - "bat"
+      - "dex"
 
 - name: "AUR | Install AUR packages"
   kewlfft.aur.aur:

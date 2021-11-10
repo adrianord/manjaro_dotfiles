@@ -419,5 +419,7 @@ mode "$mode_gaps_outer" {
 
 
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/slack'
-exec_always autorandr --change
 exec xset -b
+exec dex -s ~/.config/autostart -ae i3
+
+bindsym Mod1+Tab exec --no-startup-id "rofi -show window -selected-row 1"
