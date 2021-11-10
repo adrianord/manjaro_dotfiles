@@ -1,6 +1,6 @@
 [user]
   email = {{ item.git_email }}
-{% if item.ssh_key_location %}
+{% if item.ssh_key_location is defined %}
 [core]
   sshCommand = "ssh -i {{ item.ssh_key_location }}"
 {% endif %}
