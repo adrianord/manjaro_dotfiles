@@ -16,4 +16,4 @@
     - role: "vim"
       tags: ["vim"]
     - role: "keyboard"
-      tags: ["keyboard"]
+      tags: ["keyboard", "never"]
