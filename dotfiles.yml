@@ -3,13 +3,17 @@
   roles:
     - role: "aur"
       tags: ["aur"]
+    - role: "firefox"
+      tags: ["firefox"]
     - role: "i3"
       tags: ["i3"]
-    - role: "vmtools"
-      tags: ["vmtools"]
+        #- role: "vmtools"
+        #  tags: ["vmtools"]
     - role: "git"
       tags: ["git"]
     - role: "zsh"
       tags: ["zsh"]
     - role: "vim"
       tags: ["vim"]
+    - role: "keyboard"
+      tags: ["keyboard"]

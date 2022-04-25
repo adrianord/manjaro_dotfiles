@@ -6,11 +6,7 @@ zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
 # Set up prompt
-fpath+="${HOME}/.local/share/zsh/themes/pure"
-autoload -Uz promptinit
-promptinit
-prompt pure
-zstyle :prompt:pure:path color cyan
+eval "$(starship init zsh)"
 
 # User emacs keybindings even if our EDITOR is set to vi
 bindkey -e

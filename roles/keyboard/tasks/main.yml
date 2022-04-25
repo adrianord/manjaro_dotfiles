@@ -1,0 +1,24 @@
+- name: Keyboard | Create l_ctrl file
+  ansible.builtin.copy:
+    src: "{{role_path}}/files/l_ctrl"
+    dest: "/usr/share/X11/xkb/symbols/l_ctrl"
+  become: true
+
+- name: Keyboard | Ensure l_ctrl modifier
+  ansible.builtin.lineinfile:
+    path: "/usr/share/X11/xkb/rules/evdev"
+    insertbefore: "ctrl:nocaps"
+    line: "  lctrl:escape          =       +l_ctrl(escape)"
+  become: true
+
+- name: Keyboard | Ensure lctrl:escape is in dconf
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/xkb-options"
+    value: "['lctrl:escape']"
+    state: present
+
+- name: Keyboard | Ensure sources
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "[('xkb', 'us')]"
+    state: present

@@ -1,0 +1,5 @@
+partial modifier_keys
+xkb_symbols "escape" {
+  replace key <LCTL> { [ Escape ] };
+  replace key <CAPS> { [ Control_L, Control_L ] };
+};

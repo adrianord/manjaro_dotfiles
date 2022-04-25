@@ -1,0 +1,6 @@
+---
+- name: Set Firefox as default browswer
+  replace:
+    path: "{{ ansible_user_dir }}/.config/mimeapps.list"
+    regexp: "userapp-Pale Moon"
+    replace: "firefox"

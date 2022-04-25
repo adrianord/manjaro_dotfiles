@@ -1,3 +1,13 @@
+- name: "i3 | Install AUR dependencies"
+  kewlfft.aur.aur:
+    use: "yay"
+    state: "latest"
+    name: "{{ item }}"
+  with_items:
+    - alacritty
+  become_user: "aur_builder"
+  become: true
+
 - name: "i3 | Ensure config path"
   ansible.builtin.file:
     path: "{{ xdg_config_home }}/i3"
@@ -14,3 +24,39 @@
     dest: "{{ xdg_config_home }}/i3/config"
     state: link
     force: true
+
+- name: "i3 | Symlink alacritty config file"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/alacritty.yml"
+    dest: "{{ xdg_config_home }}/alacritty.yml"
+    state: link
+    force: true
+
+- name: "i3 | Ensure wallpaper directory"
+  ansible.builtin.file:
+    path: "{{ user_home }}/Documents/Wallpapers"
+    state: directory
+
+- name: "i3 | Download wallpaper"
+  ansible.builtin.get_url:
+    url: "https://f002.backblazeb2.com/file/adrianordonez-dotfiles/background-porsche.jpg"
+    dest: "{{ user_home }}/Documents/Wallpapers/background.jpg"
+
+- name: "i3 | Symlink nitrogen configuration"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/nitrogen"
+    dest: "{{ xdg_config_home }}/nitrogen"
+    state: link
+    force: true
+
+- name: "i3 | Ensure fonts directory"
+  ansible.builtin.file:
+    path: "{{ xdg_data_home }}/fonts"
+    state: directory
+
+- name: "i3 | Download font"
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/SourceCodePro.zip"
+    dest: "{{ xdg_data_home }}/fonts"
+    remote_src: true
+
